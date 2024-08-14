@@ -1,57 +1,98 @@
-/*
-This is version 1 of my Rock Papers Scissors game its starting off console only logic 
-later we will add some HTML and CSS 
+const playerRockButton = document.querySelector("#playerRockButton");
+const playerPaperButton = document.querySelector("#playerPaperButton");
+const playerScissorsButton = document.querySelector("#playerScissorsButton");
+const cpuRockButton = document.querySelector("#cpuRockButton");
+const cpuPaperButton = document.querySelector("#cpuPaperButton");
+const cpuScissorsButton = document.querySelector("#cpuScissorsButton");
+let display = document.querySelector("#infoScreen");
+let playerScore = 0;
+let cpuScore = 0;
 
-1) We will ask the user for input 
-2) We will select a random selection in the script 
-3) we will compare the two and determine a win loss or draw 
-4) We will display a win loss or draw 
-5) Ext we will tally the score  
-*/
-
-let choice = prompt("Rock, paper or scissors which one?");
-console.log(choice);
-
-if (choice !== "rock" || choice !== "paper" || choice !== "scissors") {
-  alert(
-    "Please enter the word rock, paper or scissors (all lower case and spaces)"
-  );
+function changeTextFunction(text) {
+  display.textContent = text;
 }
 
-if (choice === "rock" || choice === "paper" || choice === "scissors") {
-  alert("Great lets see who has won!");
-  let rpsgame = ["rock", "paper", "scissors"]; // create an array of those types
-  let min = 0; // set these values to represent the index of the array
-  let max = 2;
-  let rand = Math.random() * (max - min) + min;
-  let CPU = Math.round(rand);
-  // get a number 0,1 or 2
-  console.log(`You picked ${choice} the CPU selected ${rpsgame[CPU]}`);
+function clearText() {
+  display.textContent = "";
+}
 
-  // Draw
-  if (rpsgame[CPU] === choice) {
-    console.log("It was a draw why not try again");
-  }
+function resetButtons() {
+  playerRockButton.style.backgroundColor = "lightskyblue";
+  playerPaperButton.style.backgroundColor = "lightskyblue";
+  playerScissorsButton.style.backgroundColor = "lightskyblue";
+}
 
-  // Win
-  if (choice === "rock" && rpsgame[CPU] === "scissors") {
-    console.log("Rock bluntens scissors, It's a win 🎉 ");
-  }
-  if (choice === "paper" && rpsgame[CPU] === "rock") {
-    console.log("Paper covers rock , It's a win 🎉 ");
-  }
-  if (choice === "scissors" && rpsgame[CPU] === "paper") {
-    console.log("Scissors cut paper , It's a win 🎉 ");
-  }
+function resetCPUButtons() {
+  cpuRockButton.style.backgroundColor = "lightskyblue";
+  cpuPaperButton.style.backgroundColor = "lightskyblue";
+  cpuScissorsButton.style.backgroundColor = "lightskyblue";
+}
 
-  //Loss
-  if (choice === "rock" && rpsgame[CPU] === "paper") {
-    console.log("Rock is covered by paper, It's a loss 😿 ");
-  }
-  if (choice === "paper" && rpsgame[CPU] === "scissors") {
-    console.log("Paper is cut bny scissors , It's a loss 😿 ");
-  }
-  if (choice === "scissors" && rpsgame[CPU] === "rock") {
-    console.log("Scissors are bluntened by rock , It's a loss 😿 ");
+function playGame(choice) {
+  if (choice === "rock" || choice === "paper" || choice === "scissors") {
+    let Capchoice = choice.charAt(0).toUpperCase() + choice.slice(1);
+    let currentButton = `#player${Capchoice}Button`;
+    let currentSelector = document.querySelector(currentButton);
+
+    resetButtons();
+    currentSelector.style.backgroundColor = "purple";
+
+    let rpsgame = ["rock", "paper", "scissors"];
+    let rand = Math.floor(Math.random() * rpsgame.length); // get a number 0, 1, or 2
+    let CPU = rpsgame[rand];
+
+    let CapCPUchoice = CPU.charAt(0).toUpperCase() + CPU.slice(1);
+    let currentCPUButton = `#cpu${CapCPUchoice}Button`;
+    let currentCPUSelector = document.querySelector(currentCPUButton);
+    resetCPUButtons();
+    currentCPUSelector.style.backgroundColor = "green";
+
+    clearText();
+
+    let turnMessage = "";
+
+    if (CPU === choice) {
+      turnMessage = `This turn: 🤷 It's a draw!! You selected ${choice} and the CPU selected ${CPU} 🤷`;
+    } else if (
+      (choice === "rock" && CPU === "scissors") ||
+      (choice === "paper" && CPU === "rock") ||
+      (choice === "scissors" && CPU === "paper")
+    ) {
+      playerScore++;
+      turnMessage = `This turn: 🎈 🎉 It's a win! You selected ${choice} and the CPU selected ${CPU} 🎉 🎈`;
+    } else {
+      cpuScore++;
+      turnMessage = `This turn: 😿 It's a loss! You selected ${choice} and the CPU selected ${CPU} 😿`;
+    }
+
+    if (playerScore === 5 || cpuScore === 5) {
+      if (playerScore === 5) {
+        changeTextFunction(
+          `🎉 Congratulations! You are the winner with a score of 5! 🎉`
+        );
+      } else {
+        changeTextFunction(
+          `😿 The CPU wins with a score of 5! Better luck next time! 😿`
+        );
+      }
+
+      playerScore = 0;
+      cpuScore = 0;
+    } else {
+      let scoreupdate = `***The current score is You: ${playerScore} CPU: ${cpuScore}***`;
+
+      changeTextFunction(`${turnMessage}\n${scoreupdate}`);
+    }
   }
 }
+
+playerRockButton.addEventListener("click", () => playGame("rock"));
+playerPaperButton.addEventListener("click", () => playGame("paper"));
+playerScissorsButton.addEventListener("click", () => playGame("scissors"));
+
+window.onload = () => {
+  playerScore = 0;
+  cpuScore = 0;
+  let scoreupdate = `The current score is You: ${playerScore} CPU: ${cpuScore}`;
+  changeTextFunction(scoreupdate);
+};

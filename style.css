@@ -1,0 +1,72 @@
+.header {
+  background-color: lightskyblue;
+  color: darkblue;
+  display: flex;
+  justify-content: space-around;
+  font-family: Matemasie;
+  font-size: 36px;
+}
+
+.titlesection {
+  background-color: lightskyblue;
+  color: darkblue;
+  display: flex;
+  justify-content: space-between;
+}
+
+.titleelement {
+  font-family: Matemasie;
+  font-size: 1.7rem;
+  display: flex;
+  border-radius: 20px;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+.gamesection {
+  background-color: lightskyblue;
+  color: darkblue;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2%;
+  padding-right: 10%;
+  padding-left: 10%;
+  padding-bottom: 2%;
+}
+
+.gamedivision {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  font-family: Matemasie;
+  font-size: 18px;
+  justify-content: center;
+  align-items: center;
+}
+
+.gamebutton {
+  display: flex;
+  height: 100px;
+  width: 100px;
+  border: dashed, darkblue, 2px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.gameinfo {
+  height: 50%;
+  width: 90%;
+  border: dashed, darkblue, 2px;
+  border-radius: 20px;
+  font-size: 1.5rem;
+  padding: 2%;
+}
+
+.footer {
+  background-color: lightskyblue;
+  color: darkblue;
+  font-family: Montserrat;
+  justify-content: center;
+  align-items: center;
+}

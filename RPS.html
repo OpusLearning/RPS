@@ -4,10 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Matemasie"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    
   </head>
 
   <body>
-    <h1>It's the classic Rock Paper Scissors - lets play</h1>
+    <div class="header">
+      <h1>ROCK PAPER SCISSORS</h1>
+    </div>
+    <div class="titlesection">
+      <div class="titleelement">Player</div>
+      <div class="titleelement">CPU</div>
+    </div>
+    <div class="gamesection">
+      <div class="gamedivision">
+        <div id="playerRockButton" class="gamebutton">Rock</div>
+        <div id="playerPaperButton" class="gamebutton">Paper</div>
+        <div id="playerScissorsButton" class="gamebutton">Scissors</div>
+      </div>
+      <div class="gamedivision"><div id="infoScreen" class="gameinfo"></div></div>
+      <div class="gamedivision">
+        <div id="cpuRockButton" class="gamebutton">Rock</div>
+        <div id="cpuPaperButton" class="gamebutton">Paper</div>
+        <div id="cpuScissorsButton" class="gamebutton">Scissors</div>
+      </div>
+    </div>
+    <div class="footer"> © <a href="https://jameswallace.tech">JamesWallace.tech</a>
+    <div>
     <script src="RPS.js"></script>
   </body>
 </html>
